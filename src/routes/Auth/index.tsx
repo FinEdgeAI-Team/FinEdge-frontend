@@ -43,7 +43,7 @@ const GreevaAuth: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen w-full bg-linear-to-br from-slate-700 via-slate-800 to-slate-900 flex items-center justify-center p-4">
 
       {/* Background Decoration */}
       <div className="absolute top-20 left-20 w-64 h-64 bg-slate-600 rounded-full opacity-10 blur-3xl"></div>
