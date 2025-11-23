@@ -46,7 +46,7 @@ const ExpenseBreakdown = () => {
   };
 
   return (
-    <div className="min-h-screenflex items-center justify-center p-8">
+    <div className="border w-full flex items-center justify-center p-8">
       <div className="bg-gray-900 rounded-lg p-8 w-full max-w-md">
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-gray-300 text-lg font-medium">Top 3 Expense Breakdown</h2>

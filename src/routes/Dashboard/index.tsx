@@ -5,6 +5,8 @@ import CashFlowTrendChart from '../../data/component/DashordComponent/cashFlowCh
 import { dashboardData } from '../../data/dashboardData'
 import ExpenseBreakdown from '../../data/component/DashordComponent/ExpenseBreakdown'
 import RecentTransactionsTable from '../../data/component/DashordComponent/RecentTransactionsTable'
+import QuickActionsDemo from '../../data/component/DashordComponent/QuickAcion'
+import TaxObligationsWidget from '../../data/component/DashordComponent/Tax'
 
 export const Route = createFileRoute('/Dashboard/')({
   component: RouteComponent,
@@ -56,7 +58,13 @@ const Dashboard: React.FC = () => {
         />
 
         <RecentTransactionsTable />
-        <ExpenseBreakdown />
+        <div className="flex flex-col justify-between md:flex-row gap-6 mt-8">
+          <ExpenseBreakdown />
+          <div className="flex flex-col gap-4 md:w-1/2">
+            <QuickActionsDemo />
+            <TaxObligationsWidget  />
+          </div>
+        </div>
       </div>
     </div>
   )

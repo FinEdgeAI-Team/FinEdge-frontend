@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Search, 
-  Bell, 
+  Search,
   Grid3x3, 
   Settings, 
   Sun,
