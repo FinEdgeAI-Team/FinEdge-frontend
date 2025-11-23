@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 // ROUTER CONFIG
 export const Route = createFileRoute('/Auth/')({
@@ -18,13 +18,14 @@ type FormValues = {
 
 // ROUTE COMPONENT → your full auth page
 function RouteComponent() {
-  return <GreevaAuth />;
+  return <Auth />;
 }
 
 // MAIN AUTH UI
-const GreevaAuth: React.FC = () => {
+const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
 
   const {
     register,
@@ -35,6 +36,7 @@ const GreevaAuth: React.FC = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log(isLogin ? 'Login submitted:' : 'Sign up submitted:', data);
+    navigate({ to: '/Dashboard' })
   };
 
   const toggleForm = () => {
@@ -192,4 +194,4 @@ const GreevaAuth: React.FC = () => {
   );
 };
 
-export default GreevaAuth;
+export default Auth;
