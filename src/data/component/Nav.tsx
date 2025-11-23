@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import {
-  Search,
-  Grid3x3,
-  Settings,
+import React, { useState } from 'react';
+import { 
+  Search, 
+  Bell, 
+  Grid3x3, 
+  Settings, 
   Sun,
   Moon,
   ChevronDown,
   Menu,
 } from "lucide-react";
-import AlertCenter from "./DashordComponent/alertCenter";
+import AlertCenterContainer from './AlertCenter/AlertCenterContainer';
+
+// 🔥 Import the global alert container we created
 
 interface NavbarProps {
   cashCrisisAlert?: {
@@ -21,13 +24,14 @@ interface NavbarProps {
   formatCurrency?: (amount: number) => string;
 }
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({}) => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
   return (
     <nav className="bg-slate-900 border-b border-slate-700 px-4 sm:px-6 h-16 flex items-center justify-between">
+      
       {/* Left Section - Logo & Menu */}
       <div className="flex items-center gap-4">
         <button className="lg:hidden text-slate-400 hover:text-white transition-colors">
@@ -35,14 +39,13 @@ const Navbar: React.FC<NavbarProps> = () => {
         </button>
       </div>
 
-      {/* Center - Search */}
+      {/* Center Section - Search */}
       <div className="flex-1 max-w-xl mx-4 hidden md:block">
         <div
-          className={`relative flex items-center bg-slate-800 rounded-lg border transition-colors ${
-            searchFocused
-              ? "border-blue-500 ring-1 ring-blue-500"
-              : "border-slate-700"
-          }`}
+          className={`
+            relative flex items-center bg-slate-800 rounded-lg border transition-colors
+            ${searchFocused ? "border-blue-500 ring-1 ring-blue-500" : "border-slate-700"}
+          `}
         >
           <Search className="w-5 h-5 text-slate-400 ml-3" />
           <input
@@ -60,15 +63,16 @@ const Navbar: React.FC<NavbarProps> = () => {
 
       {/* Right Section */}
       <div className="flex items-center gap-2 sm:gap-3">
+        
         {/* Mobile Search */}
         <button className="md:hidden p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
           <Search className="w-5 h-5" />
         </button>
 
-        {/* Notifications */}
-        <AlertCenter />
+        {/* Alert Bell Connected to Alert Panel */}
+        <AlertCenterContainer />
 
-        {/* Apps */}
+        {/* Apps Grid */}
         <button className="hidden sm:flex p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
           <Grid3x3 className="w-5 h-5" />
         </button>
@@ -86,7 +90,8 @@ const Navbar: React.FC<NavbarProps> = () => {
           {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
 
-        <div className="hidden sm:block w-px h-6 bg-slate-700" />
+        {/* Divider */}
+        <div className="hidden sm:block w-px h-6 bg-slate-700"></div>
 
         {/* User Profile */}
         <div className="relative">
@@ -106,19 +111,18 @@ const Navbar: React.FC<NavbarProps> = () => {
             <ChevronDown className="w-4 h-4 text-slate-400 hidden sm:block" />
           </button>
 
+          {/* Dropdown */}
           {profileOpen && (
             <>
               <div
                 className="fixed inset-0 z-10"
                 onClick={() => setProfileOpen(false)}
               />
-
               <div className="absolute right-0 mt-2 w-56 bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-20 py-2">
                 <div className="px-4 py-3 border-b border-slate-700">
                   <p className="text-sm font-medium text-white">Aisha M.</p>
                   <p className="text-xs text-slate-400">aisha@example.com</p>
                 </div>
-
                 <div className="py-2">
                   <button className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">
                     Profile Settings
@@ -130,7 +134,6 @@ const Navbar: React.FC<NavbarProps> = () => {
                     Help & Support
                   </button>
                 </div>
-
                 <div className="border-t border-slate-700 pt-2">
                   <button className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-slate-700 transition-colors">
                     Logout
