@@ -7,7 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend
+  Legend,
 } from "recharts";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
@@ -65,7 +65,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
 ---------------------------- */
 const StatBlock = ({
   label,
-  value
+  value,
 }: {
   label: string;
   value: string | number;
@@ -84,7 +84,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
   title = "Cash Flow Trend",
   showHeader = true,
   height = 300,
-  currency = "₦"
+  currency = "₦",
 }) => {
   const {
     chartData,
@@ -93,7 +93,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
     lowest,
     variance,
     trendPercentage,
-    isPositiveTrend
+    isPositiveTrend,
   } = useMemo(() => {
     const firstValue = data[0]?.net_flow ?? 0;
     const lastValue = data[data.length - 1]?.net_flow ?? 0;
@@ -105,14 +105,14 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
     return {
       chartData: data.map((d) => ({
         ...d,
-        net_flow_formatted: toMillions(d.net_flow)
+        net_flow_formatted: toMillions(d.net_flow),
       })),
       average: data.reduce((sum, d) => sum + d.net_flow, 0) / data.length,
       highest: max,
       lowest: min,
       variance: max - min,
       trendPercentage: firstValue ? (trend / firstValue) * 100 : 0,
-      isPositiveTrend: trend >= 0
+      isPositiveTrend: trend >= 0,
     };
   }, [data]);
 
@@ -123,7 +123,8 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
           <div>
             <h3 className="text-lg font-semibold text-white">{title}</h3>
             <p className="text-sm text-slate-400">
-              Average: {currency}{toMillions(average).toFixed(2)}M
+              Average: {currency}
+              {toMillions(average).toFixed(2)}M
             </p>
           </div>
 
@@ -163,7 +164,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
               value: `Cash Flow (${currency}M)`,
               angle: -90,
               position: "insideLeft",
-              style: { fill: "#94a3b8", fontSize: 12 }
+              style: { fill: "#94a3b8", fontSize: 12 },
             }}
           />
           <Tooltip content={<CustomTooltip />} />
@@ -182,7 +183,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
               fill: "#3b82f6",
               r: 5,
               strokeWidth: 2,
-              stroke: "#1e293b"
+              stroke: "#1e293b",
             }}
             activeDot={{ r: 7, strokeWidth: 2 }}
             name="Net Cash Flow"

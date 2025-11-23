@@ -40,7 +40,7 @@ export const dashboardData = {
       { category: "Other Operating", amount: 1200000, percentage: 12 },
     ],
     coach_recommendation:
-      "Stable improvement—continue reducing logistics overhead.",
+      "Stable improvement, continue reducing logistics overhead.",
   },
 
   "Mar 2025": {
@@ -62,7 +62,7 @@ export const dashboardData = {
       { category: "Other Operating", amount: 1300000, percentage: 15 },
     ],
     coach_recommendation:
-      "Cash flow is rising—consider reinvesting in marketing.",
+      "Cash flow is rising, consider reinvesting in marketing.",
   },
 
   "Apr 2025": {
@@ -84,7 +84,7 @@ export const dashboardData = {
       { category: "Other Operating", amount: 1400000, percentage: 16 },
     ],
     coach_recommendation:
-      "Great performance—consider improving inventory turnover.",
+      "Great performance, consider improving inventory turnover.",
   },
 
   "May 2025": {
@@ -105,7 +105,7 @@ export const dashboardData = {
       { category: "Marketing", amount: 600000, percentage: 5 },
       { category: "Other Operating", amount: 1500000, percentage: 18 },
     ],
-    coach_recommendation: "Excellent—month-on-month growth is strong.",
+    coach_recommendation: "Excellent, month-on-month growth is strong.",
   },
 
   "Jun 2025": {
@@ -126,7 +126,7 @@ export const dashboardData = {
       { category: "Marketing", amount: 650000, percentage: 5 },
       { category: "Other Operating", amount: 1600000, percentage: 20 },
     ],
-    coach_recommendation: "Operational efficiency improving—keep it up.",
+    coach_recommendation: "Operational efficiency improving, keep it up.",
   },
 
   "Jul 2025": {
@@ -148,7 +148,7 @@ export const dashboardData = {
       { category: "Other Operating", amount: 1700000, percentage: 22 },
     ],
     coach_recommendation:
-      "Strong mid-year performance—consider scaling operations.",
+      "Strong mid-year performance, consider scaling operations.",
   },
 
   "Aug 2025": {
@@ -169,7 +169,7 @@ export const dashboardData = {
       { category: "Marketing", amount: 800000, percentage: 5 },
       { category: "Other Operating", amount: 1800000, percentage: 25 },
     ],
-    coach_recommendation: "Very strong month—profit margins improving.",
+    coach_recommendation: "Very strong month, profit margins improving.",
   },
 
   "Sep 2025": {
@@ -190,7 +190,7 @@ export const dashboardData = {
       { category: "Marketing", amount: 750000, percentage: 5 },
       { category: "Other Operating", amount: 1650000, percentage: 19 },
     ],
-    coach_recommendation: "A slight dip—monitor inventory turnover.",
+    coach_recommendation: "A slight dip, monitor inventory turnover.",
   },
 
   "Oct 2025": {
@@ -211,7 +211,7 @@ export const dashboardData = {
       { category: "Marketing", amount: 600000, percentage: 3 },
       { category: "Other Operating", amount: 1400000, percentage: 15 },
     ],
-    coach_recommendation: "Cash flow is healthy; maintain payroll efficiency.",
+    coach_recommendation: "Cash flow is healthy. maintain payroll efficiency.",
   },
 
   "Nov 2025": {
