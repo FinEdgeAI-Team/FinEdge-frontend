@@ -10,12 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CashflowIndexRouteImport } from './routes/cashflow/index'
+import { Route as BankIndexRouteImport } from './routes/bank/index'
+import { Route as AlertIndexRouteImport } from './routes/alert/index'
 import { Route as DashboardIndexRouteImport } from './routes/Dashboard/index'
 import { Route as AuthIndexRouteImport } from './routes/Auth/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CashflowIndexRoute = CashflowIndexRouteImport.update({
+  id: '/cashflow/',
+  path: '/cashflow/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BankIndexRoute = BankIndexRouteImport.update({
+  id: '/bank/',
+  path: '/bank/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertIndexRoute = AlertIndexRouteImport.update({
+  id: '/alert/',
+  path: '/alert/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -33,30 +51,49 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/Auth': typeof AuthIndexRoute
   '/Dashboard': typeof DashboardIndexRoute
+  '/alert': typeof AlertIndexRoute
+  '/bank': typeof BankIndexRoute
+  '/cashflow': typeof CashflowIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/Auth': typeof AuthIndexRoute
   '/Dashboard': typeof DashboardIndexRoute
+  '/alert': typeof AlertIndexRoute
+  '/bank': typeof BankIndexRoute
+  '/cashflow': typeof CashflowIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/Auth/': typeof AuthIndexRoute
   '/Dashboard/': typeof DashboardIndexRoute
+  '/alert/': typeof AlertIndexRoute
+  '/bank/': typeof BankIndexRoute
+  '/cashflow/': typeof CashflowIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Auth' | '/Dashboard'
+  fullPaths: '/' | '/Auth' | '/Dashboard' | '/alert' | '/bank' | '/cashflow'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Auth' | '/Dashboard'
-  id: '__root__' | '/' | '/Auth/' | '/Dashboard/'
+  to: '/' | '/Auth' | '/Dashboard' | '/alert' | '/bank' | '/cashflow'
+  id:
+    | '__root__'
+    | '/'
+    | '/Auth/'
+    | '/Dashboard/'
+    | '/alert/'
+    | '/bank/'
+    | '/cashflow/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthIndexRoute: typeof AuthIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  AlertIndexRoute: typeof AlertIndexRoute
+  BankIndexRoute: typeof BankIndexRoute
+  CashflowIndexRoute: typeof CashflowIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +103,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cashflow/': {
+      id: '/cashflow/'
+      path: '/cashflow'
+      fullPath: '/cashflow'
+      preLoaderRoute: typeof CashflowIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bank/': {
+      id: '/bank/'
+      path: '/bank'
+      fullPath: '/bank'
+      preLoaderRoute: typeof BankIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alert/': {
+      id: '/alert/'
+      path: '/alert'
+      fullPath: '/alert'
+      preLoaderRoute: typeof AlertIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/Dashboard/': {
@@ -89,6 +147,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthIndexRoute: AuthIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  AlertIndexRoute: AlertIndexRoute,
+  BankIndexRoute: BankIndexRoute,
+  CashflowIndexRoute: CashflowIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
