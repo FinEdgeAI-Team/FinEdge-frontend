@@ -60,8 +60,9 @@ const MetricCard: React.FC<MetricCardProps> = ({
 };
 
 const FinancialDashboard: React.FC = () => {
-  const months = Object.keys(dashboardData);
-  const [selectedMonth, setSelectedMonth] = useState<string>(months[months.length - 1]);
+  const months = Object.keys(dashboardData) as (keyof typeof dashboardData)[];
+  const [selectedMonth, setSelectedMonth] =
+  useState<keyof typeof dashboardData>(months[months.length - 1] as keyof typeof dashboardData);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const currentData = dashboardData[selectedMonth];
@@ -162,7 +163,7 @@ const FinancialDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 lg:p-8">
+    <div className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -175,7 +176,7 @@ const FinancialDashboard: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-3 rounded-lg border border-slate-600 transition-colors min-w-[160px] justify-between"
+              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-3 rounded-lg border border-slate-600 transition-colors min-w-40 justify-between"
             >
               <span className="font-medium">{selectedMonth}</span>
               <ChevronDown
