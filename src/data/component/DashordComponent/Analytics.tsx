@@ -27,19 +27,19 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
   return (
     <div className="relative bg-slate-800 rounded-lg p-6 overflow-hidden group hover:bg-slate-750 transition-colors">
-      <div className="absolute right-12 top-1/2 -translate-y-1/2 text-slate-700 opacity-20 group-hover:opacity-30 transition-opacity">
+      <div className="absolute md:right-12 md:top-1/2 hidden md:flex  -translate-y-1/2 text-slate-700 opacity-20 group-hover:opacity-30 transition-opacity">
         {decorativeIcon}
       </div>
 
       <div className="relative z-10">
-        <div className="text-slate-400 text-sm font-medium mb-4 uppercase tracking-wide">
+        <div className="text-slate-400 text-xs md:text-sm font-medium mb-4 uppercase tracking-wide">
           {title}
         </div>
 
         <div className="flex items-center gap-3 mb-4">
-          <div className={`${iconBg} rounded-full p-3`}>{icon}</div>
+          <div className={`${iconBg} rounded-full p-2 md:p-3`}>{icon}</div>
           <div>
-            <div className="text-white text-3xl font-bold">{value}</div>
+            <div className="text-white md:text-3xl font-bold">{value}</div>
             {subValue && (
               <div className="text-slate-400 text-sm">{subValue}</div>
             )}
@@ -197,21 +197,23 @@ const FinancialDashboard: React.FC = () => {
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="md:text-3xl text-xl font-bold text-white mb-2">
               Financial Dashboard
             </h1>
-            <p className="text-slate-400">Monitor your key financial metrics</p>
+            <p className="text-slate-400 text-sm md:text-md">
+              Monitor your key financial metrics
+            </p>
           </div>
 
           {/* Month Dropdown */}
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-3 rounded-lg border border-slate-600 transition-colors min-w-40 justify-between"
+              className="flex items-center gap-2 bg-slate-800 text-sm md:text-md hover:bg-slate-700 text-white md:px-4 md:py-3 py-2 px-3 rounded-lg border border-slate-600 transition-colors md:min-w-40 justify-between"
             >
               <span className="font-medium">{selectedMonth}</span>
               <ChevronDown
-                className={`w-5 h-5 transition-transform ${isDropdownOpen ? "rotate-180 transform" : ""}`}
+                className={`md:w-5 md:h-5 w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180 transform" : ""}`}
               />
             </button>
 

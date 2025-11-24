@@ -161,7 +161,7 @@ const TransactionAnalysis: React.FC<{ transactions: Transaction[] }> = ({
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
         <p className="text-xs text-slate-400 mb-2">Total Income</p>
-        <p className="text-2xl font-bold text-green-400">
+        <p className="md:text-2xl text-xl font-bold text-green-400">
           {formatCurrency(totalIncome)}
         </p>
         <p className="text-xs text-slate-500 mt-2">
@@ -171,7 +171,7 @@ const TransactionAnalysis: React.FC<{ transactions: Transaction[] }> = ({
 
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
         <p className="text-xs text-slate-400 mb-2">Total Expenses</p>
-        <p className="text-2xl font-bold text-red-400">
+        <p className="md:text-2xl text-xl font-bold text-red-400">
           {formatCurrency(totalExpense)}
         </p>
         <p className="text-xs text-slate-500 mt-2">
@@ -182,7 +182,7 @@ const TransactionAnalysis: React.FC<{ transactions: Transaction[] }> = ({
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
         <p className="text-xs text-slate-400 mb-2">Net Flow</p>
         <p
-          className={`text-2xl font-bold ${netFlow >= 0 ? "text-emerald-400" : "text-amber-400"}`}
+          className={`md:text-2xl text-xl font-bold ${netFlow >= 0 ? "text-emerald-400" : "text-amber-400"}`}
         >
           {formatCurrency(netFlow)}
         </p>
@@ -193,7 +193,7 @@ const TransactionAnalysis: React.FC<{ transactions: Transaction[] }> = ({
 
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
         <p className="text-xs text-slate-400 mb-2">Avg Transaction</p>
-        <p className="text-2xl font-bold text-blue-400">
+        <p className="md:text-2xl text-xl font-bold text-blue-400">
           {formatCurrency(avgTransaction)}
         </p>
         <p className="text-xs text-slate-500 mt-2">
@@ -355,10 +355,10 @@ export default function BankConnectionPage() {
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="md:text-3xl text-xl font-bold text-white mb-2">
             Bank Integration
           </h1>
-          <p className="text-slate-400">
+          <p className="text-slate-400 text-sm md:text-xs">
             Securely connect your Nigerian bank account to auto-import
             transactions and get AI-powered financial insights.
           </p>
@@ -366,7 +366,7 @@ export default function BankConnectionPage() {
 
         {/* Bank Cards Grid */}
         <div>
-          <h2 className="text-lg font-semibold text-white mb-4">
+          <h2 className="md:text-lg text-md font-semibold text-white mb-4">
             Available Banks
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -426,7 +426,7 @@ export default function BankConnectionPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-400">Connected Account</p>
-                  <p className="text-2xl font-bold text-white mt-1">
+                  <p className="md:ext-2xl text-xl font-bold text-white mt-1">
                     {connectedBank}
                   </p>
                   <p className="text-xs text-slate-400 mt-2">
@@ -435,7 +435,7 @@ export default function BankConnectionPage() {
                 </div>
                 <div className="text-right">
                   <div className="flex items-center gap-2 text-emerald-400 mb-2">
-                    <CheckCircle size={20} />
+                    <CheckCircle size={18} />
                     <span className="font-semibold">Active</span>
                   </div>
                   <p className="text-xs text-slate-400">
@@ -480,19 +480,19 @@ export default function BankConnectionPage() {
                         key={transaction.id}
                         className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors"
                       >
-                        <td className="px-6 py-4 text-sm text-slate-300">
+                        <td className="md:px-6 md:py-4 px-3 py-2 text-xs md:text-sm text-slate-300">
                           {transaction.date}
                         </td>
-                        <td className="px-6 py-4 text-sm text-white font-medium">
+                        <td className="md:px-6 md:py-4 px-3 py-2 text-xs md:text-sm text-white font-medium">
                           {transaction.description}
                         </td>
-                        <td className="px-6 py-4 text-xs">
+                        <td className="md:px-6 md:py-4 px-3 py-2 text-xs md:text-sm">
                           <span className="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 capitalize">
                             {transaction.category || "Other"}
                           </span>
                         </td>
                         <td
-                          className={`px-6 py-4 text-sm font-semibold text-right ${
+                          className={`md:px-6 md:py-4 px-3 py-2 text-xs md:text-sm  font-semibold text-right ${
                             transaction.type === "credit"
                               ? "text-emerald-400"
                               : "text-red-400"
@@ -515,7 +515,11 @@ export default function BankConnectionPage() {
             />
 
             {/* Download Section */}
-            <div className="flex items-center justify-between bg-blue-500/10  border border-blue-500/30 rounded-xl p-6">
+            <div
+              className="flex items-center justify-between
+             bg-blue-500/10  border border-blue-500/30
+              rounded-xl md:p-6 px-3 py-4"
+            >
               <div>
                 <p className="font-semibold text-white mb-1">
                   Export Transactions
@@ -527,7 +531,9 @@ export default function BankConnectionPage() {
               </div>
               <button
                 onClick={downloadCSV}
-                className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors whitespace-nowrap"
+                className="flex items-center gap-2 md:px-6 md:py-3 px-3 py-2
+                 bg-blue-600 hover:bg-blue-700 text-white font-semibold
+                  rounded-lg transition-colors whitespace-nowrap text-xs md:text-lg"
               >
                 <Download size={18} />
                 Download CSV

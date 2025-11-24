@@ -38,7 +38,7 @@ const QuickActionButton: React.FC<QuickActionButtonProps> = ({
           {icon}
         </div>
         <div className="text-left">
-          <div className="font-medium text-sm">{label}</div>
+          <div className="font-medium md:text-sm text-xs">{label}</div>
           {description && (
             <div
               className={`text-xs mt-0.5 ${isActive ? "text-blue-100" : "text-slate-400"}`}
@@ -85,7 +85,9 @@ const QuickActions: React.FC = () => {
 
   return (
     <div className="bg-slate-800 rounded-lg p-6 border w-full border-slate-700 h-full">
-      <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
+      <h3 className="md:text-lg text-md font-semibold text-white mb-4">
+        Quick Actions
+      </h3>
 
       <div className="space-y-3">
         {actions.map((action, index) => (

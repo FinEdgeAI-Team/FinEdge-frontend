@@ -33,11 +33,15 @@ const Dashboard: React.FC = () => {
 
         {/* Month Selector */}
         <div className="mt-8 mb-8  flex items-center gap-4 bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <label className="text-white font-semibold">Select Month:</label>
+          <label className="text-white text-sm md:text-md font-semibold">
+            Select Month:
+          </label>
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-600 cursor-pointer hover:bg-slate-600 transition-colors"
+            className="bg-slate-700 text-white px-4 py-2
+             rounded-lg border border-slate-600 cursor-pointer
+              hover:bg-slate-600 transition-colors text-sm md:text-md"
           >
             {months.map((month) => (
               <option key={month} value={month}>

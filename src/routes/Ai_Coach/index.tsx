@@ -251,7 +251,9 @@ const InsightsWidget: React.FC<{
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="bg-slate-800 px-4 py-3 flex items-center gap-2">
         <Sparkles className="w-5 h-5 text-white" />
-        <h3 className="text-white font-semibold">AI Coach Insights</h3>
+        <h3 className="text-white text-xs md:text-md font-semibold">
+          AI Coach Insights
+        </h3>
       </div>
 
       <div className="divide-y divide-gray-100">
@@ -284,7 +286,7 @@ const InsightsWidget: React.FC<{
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span
-                        className={`text-xs font-semibold uppercase ${
+                        className={`text-xs font-medium uppercase ${
                           insight.type === "critical"
                             ? "text-red-600"
                             : insight.type === "opportunity"
@@ -299,14 +301,14 @@ const InsightsWidget: React.FC<{
                             : " Best Practice"}
                       </span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mt-1">
+                    <h4 className="font-semibold md:text-md text-sm text-gray-900 mt-1">
                       {insight.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="md:text-sm text-xs text-gray-600 mt-1">
                       {insight.description}
                     </p>
                     {insight.metric && (
-                      <p className="text-sm font-semibold text-gray-900 mt-2">
+                      <p className="md:text-sm text-xs font-semibold text-gray-900 mt-2">
                         {insight.metric}
                       </p>
                     )}
@@ -316,11 +318,11 @@ const InsightsWidget: React.FC<{
                 <div className="flex gap-2 mt-3">
                   <button
                     onClick={() => onInsightClick(insight)}
-                    className="px-3 py-1.5 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+                    className="md:px-3 md:py-1.5 md:text-sm py-1 px-2  bg-blue-500 text-white rounded-lg text-xs font-medium hover:bg-blue-600 transition-colors"
                   >
                     {insight.action}
                   </button>
-                  <button className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
+                  <button className="md:px-3 md:py-1.5 md:text-sm py-1 px-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-200 transition-colors">
                     Dismiss
                   </button>
                 </div>
@@ -352,9 +354,9 @@ const QuickActions: React.FC<{ onActionClick: (action: string) => void }> = ({
           <button
             key={action.id}
             onClick={() => onActionClick(action.id)}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors whitespace-nowrap"
+            className="flex items-center md:gap-2 gap-1 px-3 py-1 md:px-4 md:py-2 bg-gray-100 rounded-full text-xs md:text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors whitespace-nowrap"
           >
-            <Icon className="w-4 h-4" />
+            <Icon className="md:w-4 md:h-4 w-3 h-3" />
             {action.label}
           </button>
         );
@@ -766,17 +768,17 @@ const AI: React.FC = () => {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">
+                <h1 className="md:text-xl text-md font-bold text-gray-900">
                   FinEdge AI Coach
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="md:text-sm text-xs text-gray-500">
                   Your personal CFO, available 24/7
                 </p>
               </div>
             </div>
             <button
               onClick={() => setShowInsights(!showInsights)}
-              className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+              className="md:px-4 md:py-2 py-1 px-3 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
             >
               {showInsights ? "Hide" : "Show"} Insights
             </button>
@@ -854,7 +856,10 @@ const AI: React.FC = () => {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ask me anything about your finances..."
-                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    className="flex-1 md:px-4 md:py-3 px-2 py-2
+                     bg-gray-50 border border-gray-200 
+                     rounded-xl focus:outline-none focus:ring-2
+                      focus:ring-blue-500 focus:border-transparent text-xs md:text-sm"
                     disabled={isLoading}
                   />
                   <button
@@ -862,7 +867,7 @@ const AI: React.FC = () => {
                     disabled={!inputValue.trim() || isLoading}
                     className="px-6 py-3 bg-slate-800 text-white rounded-xl font-medium hover:from-purple-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className="md:w-4 md:h-3 h-3 w-3" />
                   </button>
                 </div>
                 <p className="text-xs text-gray-500 mt-2 text-center">

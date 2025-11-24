@@ -102,25 +102,25 @@ export const ExpenseReportsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-slate-950 md:p-6 p-4">
+      <div className="max-w-6xl mx-auto md:space-y-8 space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="md:text-3xl text-xl font-bold text-white mb-2">
             Expense Reports
           </h1>
-          <p className="text-slate-400">
+          <p className="text-slate-400 md:text-xl text-sm">
             Track and manage all your business expenses
           </p>
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <p className="text-xs font-medium text-slate-400 mb-1">
               Total Expenses
             </p>
-            <p className="text-2xl font-bold text-white">
+            <p className="md:text-2xl text-xl font-bold text-white">
               ₦{(totalExpenses / 1000000).toFixed(1)}M
             </p>
             <p className="text-xs text-slate-500 mt-2">
@@ -130,7 +130,7 @@ export const ExpenseReportsPage: React.FC = () => {
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <p className="text-xs font-medium text-emerald-400 mb-1">Paid</p>
-            <p className="text-2xl font-bold text-white">
+            <p className="md:text-2xl text-xl font-bold text-white">
               ₦{(paidExpenses / 1000000).toFixed(1)}M
             </p>
             <p className="text-xs text-slate-500 mt-2">
@@ -140,7 +140,7 @@ export const ExpenseReportsPage: React.FC = () => {
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <p className="text-xs font-medium text-amber-400 mb-1">Pending</p>
-            <p className="text-2xl font-bold text-white">
+            <p className="md:text-2xl text-xl font-bold text-white">
               ₦{(pendingExpenses / 1000000).toFixed(1)}M
             </p>
             <p className="text-xs text-slate-500 mt-2">
@@ -150,7 +150,7 @@ export const ExpenseReportsPage: React.FC = () => {
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <p className="text-xs font-medium text-red-400 mb-1">Overdue</p>
-            <p className="text-2xl font-bold text-white">
+            <p className="md:text-2xl text-xl font-bold text-white">
               ₦{(overdueExpenses / 1000000).toFixed(1)}M
             </p>
             <p className="text-xs text-slate-500 mt-2">
@@ -160,13 +160,13 @@ export const ExpenseReportsPage: React.FC = () => {
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div className="flex flex-row gap-4 items-start sm:items-center justify-between">
           <div className="flex gap-2">
             <Filter size={18} className="text-slate-400 mt-2" />
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value as any)}
-              className="px-4 py-2 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none"
+              className="md:px-4 md:py-2 px-3 py-1.5 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none"
             >
               <option value="all">All Status</option>
               <option value="paid">Paid</option>
@@ -177,15 +177,19 @@ export const ExpenseReportsPage: React.FC = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 bg-slate-800 cursor-pointer border border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none"
+              className="md:px-4 md:py-2 px-3 py-1.5 bg-slate-800 cursor-pointer border border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none"
             >
               <option value="date">Sort by Date</option>
               <option value="amount">Sort by Amount</option>
             </select>
           </div>
 
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-            <Download size={18} />
+          <button
+            className="flex items-center gap-2 md:px-4 px-3 py-2
+           bg-blue-600 hover:bg-blue-700 text-white font-medium 
+           rounded-lg transition-colors text-sm md:text-md"
+          >
+            <Download size={16} />
             Export CSV
           </button>
         </div>
@@ -196,21 +200,24 @@ export const ExpenseReportsPage: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-800/50 border-b border-slate-800">
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-slate-300">
-                    Date
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-slate-300">
-                    Category
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-slate-300">
-                    Vendor
-                  </th>
-                  <th className="px-6 py-4 text-right text-xs font-semibold text-slate-300">
-                    Amount
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-semibold text-slate-300">
-                    Status
-                  </th>
+                  {["Date", "Category", "Vendor", "Amount", "Status"].map(
+                    (col, idx) => (
+                      <th
+                        key={idx}
+                        className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left text-xs sm:text-sm md:text-base font-semibold text-slate-300"
+                        {...(col === "Amount" && {
+                          className:
+                            "px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base font-semibold text-slate-300",
+                        })}
+                        {...(col === "Status" && {
+                          className:
+                            "px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-center text-xs sm:text-sm md:text-base font-semibold text-slate-300",
+                        })}
+                      >
+                        {col}
+                      </th>
+                    )
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -219,21 +226,23 @@ export const ExpenseReportsPage: React.FC = () => {
                     key={expense.id}
                     className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors"
                   >
-                    <td className="px-6 py-4 text-sm text-slate-300">
+                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-sm text-slate-300">
                       {expense.date}
                     </td>
-                    <td className="px-6 py-4 text-sm text-white font-medium">
+                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-sm text-white font-medium">
                       {expense.category}
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-300">
+                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-sm text-slate-300">
                       {expense.vendor}
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-white text-right">
+                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-sm font-semibold text-white text-right">
                       {formatAmount(expense.amount)}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-center">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(expense.status)} capitalize`}
+                        className={`px-2 sm:px-3 md:px-3 py-0.5 sm:py-1 md:py-1 rounded-full text-xs sm:text-sm md:text-sm font-medium border ${getStatusColor(
+                          expense.status
+                        )} capitalize`}
                       >
                         {expense.status}
                       </span>

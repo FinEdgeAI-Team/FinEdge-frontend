@@ -164,10 +164,12 @@ const RecentTransactionsTable = () => {
 
   // ------------------- RENDER -------------------
   return (
-    <div className="rounded-lg shadow-md p-6">
+    <div className="rounded-lg shadow-md md:p-6 p-2">
       <div className="flex justify-between items-center mb-6 mt-10">
-        <h2 className="text-xl font-bold text-white">Recent Transactions</h2>
-        <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+        <h2 className="md:text-xl text-lg font-bold text-white">
+          Recent Transactions
+        </h2>
+        <button className="text-sm text-white hover:text-slate-400 font-medium">
           View All →
         </button>
       </div>
@@ -176,22 +178,22 @@ const RecentTransactionsTable = () => {
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-left md:py-3  px-2 md:px-4 py-2 text-xs md:text-sm font-semibold text-gray-600">
                 Date
               </th>
-              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-left md:py-3 py-2 px-2 md:px-4  text-xs md:text-sm font-semibold text-gray-600">
                 Description
               </th>
-              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-left md:py-3 py-2 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-600">
                 Category
               </th>
-              <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-right md:py-3 py-2 px-2 md:px-4  text-xs md:text-sm font-semibold text-gray-600">
                 Amount
               </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-center md:py-3 py-2 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-600">
                 Status
               </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-gray-600">
+              <th className="text-center md:py-3 py-2 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-600">
                 Action
               </th>
             </tr>
@@ -202,13 +204,13 @@ const RecentTransactionsTable = () => {
                 key={transaction.id}
                 className="border-b border-gray-100 cursor-pointer hover:opacity-85 transition-colors"
               >
-                <td className="py-3 px-4 text-sm text-gray-700">
+                <td className="md:py-3 md:px-4 px-1 py-1 text-xs md:text-sm text-gray-700">
                   {formatDate(transaction.date)}
                 </td>
-                <td className="py-3 px-4 text-sm text-white font-medium">
+                <td className="md:py-3 py-1 md:px-4 px-1 text-xs md:text-sm text-white font-medium">
                   {transaction.description}
                 </td>
-                <td className="py-3 px-4 text-sm">
+                <td className="md:py-3 py-1 md:px-4 px-1 text-xs md:text-sm">
                   {editingId === transaction.id ? (
                     <div className="flex gap-2">
                       <select
@@ -239,7 +241,7 @@ const RecentTransactionsTable = () => {
                     </div>
                   ) : (
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                      className={`inline-block md:py-3 py-1 md:px-4 px-3 text-center  md:text-sm rounded-lg text-xs font-small md:font-medium ${
                         transaction.category === "Sales Revenue"
                           ? "bg-green-100 text-green-800"
                           : transaction.category.includes("COGS")
@@ -256,7 +258,7 @@ const RecentTransactionsTable = () => {
                   )}
                 </td>
                 <td
-                  className={`py-3 px-4 text-sm text-right font-semibold ${transaction.amount > 0 ? "text-green-600" : "text-red-600"}`}
+                  className={`md:py-3 py-1 md:px-4 px-1 text-xs md:text-sm text-right font-semibold ${transaction.amount > 0 ? "text-green-600" : "text-red-600"}`}
                 >
                   {transaction.amount > 0 ? "+" : ""}
                   {formatAmount(transaction.amount, transaction.currency)}
@@ -293,7 +295,7 @@ const RecentTransactionsTable = () => {
 
       {/* Pagination */}
       <div className="flex justify-between items-center mt-6">
-        <div className="text-sm text-gray-600">
+        <div className="md:text-sm text-xs text-gray-800">
           Showing {startIndex + 1}-{Math.min(endIndex, transactions.length)} of{" "}
           {transactions.length} transactions
         </div>
@@ -301,7 +303,8 @@ const RecentTransactionsTable = () => {
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="flex items-center gap-1 px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-1 md:px-3 md:py-2 px-1 py-1 md:text-sm
+             text-xs border border-gray-300 rounded text-gray-200 hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronLeft size={16} />
             Previous
@@ -318,7 +321,7 @@ const RecentTransactionsTable = () => {
                   <button
                     key={pageNum}
                     onClick={() => setCurrentPage(pageNum)}
-                    className={`px-3 py-2 text-sm rounded ${
+                    className={`md:px-3 md:py-2 px-2 py-1 md:text-sm text-xs rounded ${
                       currentPage === pageNum
                         ? "bg-blue-600 text-white"
                         : "border border-gray-300 hover:bg-gray-50"
@@ -343,7 +346,7 @@ const RecentTransactionsTable = () => {
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="flex items-center gap-1 px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-1 px-3 py-2 text-sm border border-gray-300 text-gray-300 rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Next
             <ChevronRight size={16} />

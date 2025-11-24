@@ -71,14 +71,16 @@ const KPICard: React.FC<KPICardProps> = ({
   const trendIcon = trend === "up" ? "↑" : trend === "down" ? "↓" : "→";
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-colors">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl  p-5 hover:border-slate-700 transition-colors">
       <div className="flex items-start justify-between mb-3">
-        <h4 className="text-sm font-medium text-slate-400">{title}</h4>
+        <h4 className="md:text-sm text-xs font-medium text-slate-400">
+          {title}
+        </h4>
       </div>
 
-      <div className="mb-2">
+      <div className="mb-2 ">
         <div className="flex items-baseline gap-1">
-          <p className="text-3xl font-bold text-white">{value}</p>
+          <p className="md:text-3xl text-xl font-bold text-white">{value}</p>
           {unit && <span className="text-sm text-slate-400">{unit}</span>}
         </div>
       </div>
@@ -126,7 +128,9 @@ const CashFlowChart: React.FC<ChartProps> = ({ data }) => {
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-      <h3 className="text-lg font-bold text-white mb-6">Cash Flow Trend</h3>
+      <h3 className="md:text-lg text-md font-bold text-white mb-6">
+        Cash Flow Trend
+      </h3>
 
       <ResponsiveContainer width="100%" height={350}>
         <LineChart
@@ -216,16 +220,16 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({
       <table className="w-full">
         <thead>
           <tr className="border-b border-slate-800 bg-slate-800/50">
-            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-300">
+            <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm md:text-base font-semibold text-slate-300">
               Category
             </th>
-            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-300">
+            <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm md:text-base font-semibold text-slate-300">
               Amount
             </th>
-            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-300">
+            <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm md:text-base font-semibold text-slate-300">
               % of Total
             </th>
-            <th className="px-6 py-3 text-left text-xs font-semibold text-slate-300">
+            <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm md:text-base font-semibold text-slate-300">
               Trend
             </th>
           </tr>
@@ -249,42 +253,50 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({
                 key={idx}
                 className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors"
               >
-                <td className="px-6 py-4">
-                  <p className="text-sm font-medium text-white">
+                <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3">
+                  <p className="text-xs sm:text-sm md:text-base font-medium text-white">
                     {expense.category}
                   </p>
                 </td>
-                <td className="px-6 py-4">
-                  <p className="text-sm font-semibold text-white">
+                <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3">
+                  <p className="text-xs sm:text-sm md:text-base font-semibold text-white">
                     {formatCurrency(expense.amount)}
                   </p>
                 </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2 w-32">
-                    <div className="flex-1 bg-slate-800 rounded-full h-2">
+                <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3">
+                  <div className="flex items-center gap-1 sm:gap-2 w-28 sm:w-32">
+                    <div className="flex-1 bg-slate-800 rounded-full h-2 sm:h-2.5">
                       <div
-                        className="bg-blue-500 h-2 rounded-full"
+                        className="bg-blue-500 h-2 sm:h-2.5 rounded-full"
                         style={{ width: `${expense.percentage}%` }}
                       />
                     </div>
-                    <span className="text-xs font-medium text-slate-300 w-10 text-right">
+                    <span className="text-xs sm:text-sm md:text-base font-medium text-slate-300 w-10 text-right">
                       {expense.percentage.toFixed(1)}%
                     </span>
                   </div>
                 </td>
-                <td className={`px-6 py-4 text-sm font-medium ${trendColor}`}>
+                <td
+                  className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm md:text-base font-medium ${trendColor}`}
+                >
                   {trend === "up" ? "↑" : trend === "down" ? "↓" : "→"} {change}
                 </td>
               </tr>
             );
           })}
           <tr className="bg-slate-800/50 font-semibold">
-            <td className="px-6 py-4 text-white">Total Expenses</td>
-            <td className="px-6 py-4 text-blue-400">
+            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm md:text-base text-white">
+              Total Expenses
+            </td>
+            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm md:text-base text-blue-400">
               {formatCurrency(totalExpenses)}
             </td>
-            <td className="px-6 py-4 text-blue-400">100%</td>
-            <td className="px-6 py-4 text-slate-400">—</td>
+            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm md:text-base text-blue-400">
+              100%
+            </td>
+            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm md:text-base text-slate-400">
+              —
+            </td>
           </tr>
         </tbody>
       </table>
@@ -304,9 +316,11 @@ const ScoreGauge: React.FC<GaugeProps> = ({ score, label, maxScore = 100 }) => {
 
   return (
     <div className={`${getScoreBgColor(score)} border rounded-xl p-6`}>
-      <p className="text-sm text-slate-300 mb-3">{label}</p>
+      <p className="md:text-sm text-xs text-slate-300 mb-3">{label}</p>
       <div className="flex items-end gap-4">
-        <div className="text-4xl font-bold text-white">{score}</div>
+        <div className=" text-2xl md:text-4xl font-bold text-white">
+          {score}
+        </div>
         <div className="flex-1">
           <div className="bg-slate-800 rounded-full h-2 mb-2">
             <div
@@ -365,11 +379,11 @@ export default function CashFlowPage() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-white">
+              <h1 className="md:text-2xl text-md md:font-bold text-white">
                 Cash Flow Analysis
               </h1>
               <p className="text-xs text-slate-400 mt-0.5">
-                Real-time financial insights and trends
+                Real-time financial insights
               </p>
             </div>
 
@@ -379,7 +393,9 @@ export default function CashFlowPage() {
               <div className="relative">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium hover:border-blue-500 transition-colors whitespace-nowrap"
+                  className="flex items-center text-sm md:text-md gap-2 md:px-4 md:py-2.5 px-2 py-1.5 bg-slate-800 
+                  border border-slate-700 rounded-lg text-white font-medium
+                   hover:border-blue-500 transition-colors whitespace-nowrap"
                 >
                   {selectedMonth}
                   <ChevronDown size={18} />
@@ -410,22 +426,22 @@ export default function CashFlowPage() {
               {/* Export Buttons */}
               <div className="flex items-center gap-2 pl-3 border-l border-slate-700">
                 <button
-                  className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                  className="p-2 md:p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
                   title="Download PDF"
                 >
-                  <Download size={18} />
+                  <Download size={16} />
                 </button>
                 <button
-                  className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                  className="p-2 md:p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
                   title="Share Report"
                 >
-                  <Share2 size={18} />
+                  <Share2 size={16} />
                 </button>
                 <button
-                  className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                  className="p-2 md:p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
                   title="Print"
                 >
-                  <Printer size={18} />
+                  <Printer size={16} />
                 </button>
               </div>
             </div>
@@ -511,11 +527,13 @@ export default function CashFlowPage() {
           </div>
 
           {/* Coach Recommendation */}
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
-            <h3 className="text-lg font-bold text-blue-300 mb-2">
+          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl md:p-6 p-4">
+            <h3 className="md:text-lg text-md font-bold text-blue-300 mb-2">
               AI Coach Recommendation
             </h3>
-            <p className="text-slate-300">{currentData.coach_recommendation}</p>
+            <p className="text-slate-300 md:text-md text-sm">
+              {currentData.coach_recommendation}
+            </p>
           </div>
         </div>
       </div>

@@ -18,12 +18,14 @@ const LogoutPage: React.FC = () => {
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-xl p-8 text-center">
         <div className="mb-4 flex justify-center">
           <div className="p-3 bg-slate-800 rounded-lg">
-            <LogOut size={32} className="text-slate-400" />
+            <LogOut size={25} className="text-slate-400" />
           </div>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-2">Confirm Logout</h1>
-        <p className="text-slate-400 mb-8">
+        <h1 className="md:text-2xl text-xl font-bold text-white mb-2">
+          Confirm Logout
+        </h1>
+        <p className="text-slate-400 mb-8 text-md md:text-lg">
           Are you sure you want to logout? You'll need to sign in again to
           access your dashboard.
         </p>
@@ -38,7 +40,7 @@ const LogoutPage: React.FC = () => {
           <button
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 text-white font-medium rounded-lg transition-colors"
+            className="flex-1 px-4 py-2.5 bg-slate-400 hover:bg-blue-400 disabled:bg-slate-700 text-white font-medium rounded-lg transition-colors"
           >
             {isLoggingOut ? "Logging out..." : "Logout"}
           </button>

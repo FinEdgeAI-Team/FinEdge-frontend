@@ -121,7 +121,9 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
       {showHeader && (
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-white">{title}</h3>
+            <h3 className="md:text-lg text-md font-semibold text-white">
+              {title}
+            </h3>
             <p className="text-sm text-slate-400">
               Average: {currency}
               {toMillions(average).toFixed(2)}M
@@ -129,7 +131,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
           </div>
 
           <div
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
+            className={`flex items-center gap-2 md:px-3 px-2 py-1 md:py-2 text-sm md:text-md rounded-lg ${
               isPositiveTrend
                 ? "bg-green-500/10 text-green-400"
                 : "bg-red-500/10 text-red-400"
@@ -192,7 +194,7 @@ const CashFlowTrendChart: React.FC<CashFlowTrendChartProps> = ({
       </ResponsiveContainer>
 
       {showHeader && (
-        <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-slate-700">
+        <div className="mt-4 grid grid-cols-3 gap-3 md:gap-4 pt-4 border-t border-slate-700">
           <StatBlock
             label="Highest"
             value={`${currency}${toMillions(highest).toFixed(2)}M`}

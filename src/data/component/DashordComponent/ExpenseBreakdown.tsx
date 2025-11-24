@@ -50,7 +50,7 @@ const ExpenseBreakdown = () => {
     <div className="border w-full flex items-center justify-center p-8">
       <div className="bg-gray-900 rounded-lg p-5 w-full max-w-md">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-gray-300 text-2xl  font-medium">
+          <h2 className="text-gray-100 md:text-2xl text-md  font-medium">
             Top 3 Expense Breakdown
           </h2>
           <button
@@ -58,7 +58,7 @@ const ExpenseBreakdown = () => {
             className="
     bg-transparent hover:opacity-80
     text-white font-semibold
-    px-5 py-2.5
+    md:px-5 md:py-2.5  px-2
     shadow-sm hover:shadow-md
     flex items-center gap-2
     transition-all duration-200

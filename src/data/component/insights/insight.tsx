@@ -132,7 +132,7 @@ export default function InsightsPage() {
           border: "border-red-500/30",
           badgeBg: "bg-red-500/20",
           badgeText: "text-red-300",
-          badgeLabel: "🔴 Critical",
+          badgeLabel: " Critical",
         };
       case "high":
         return {
@@ -140,7 +140,7 @@ export default function InsightsPage() {
           border: "border-amber-500/30",
           badgeBg: "bg-amber-500/20",
           badgeText: "text-amber-300",
-          badgeLabel: "🟠 High",
+          badgeLabel: " High",
         };
       case "medium":
         return {
@@ -148,7 +148,7 @@ export default function InsightsPage() {
           border: "border-blue-500/30",
           badgeBg: "bg-blue-500/20",
           badgeText: "text-blue-300",
-          badgeLabel: "🔵 Medium",
+          badgeLabel: " Medium",
         };
       case "low":
         return {
@@ -156,7 +156,7 @@ export default function InsightsPage() {
           border: "border-emerald-500/30",
           badgeBg: "bg-emerald-500/20",
           badgeText: "text-emerald-300",
-          badgeLabel: "🟢 Low",
+          badgeLabel: " Low",
         };
       default:
         return {
@@ -164,7 +164,7 @@ export default function InsightsPage() {
           border: "border-slate-500/30",
           badgeBg: "bg-slate-500/20",
           badgeText: "text-slate-300",
-          badgeLabel: "ℹ️ Info",
+          badgeLabel: "ℹ Info",
         };
     }
   };
@@ -204,88 +204,93 @@ export default function InsightsPage() {
   const totalInsights = insights.length;
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-slate-950 p-4 sm:p-6 md:p-8">
+      <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">
             Financial Insights
           </h1>
-          <p className="text-slate-400">
+          <p className="text-xs sm:text-sm md:text-base text-slate-400">
             AI-powered analysis of your financial data
           </p>
         </div>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-            <p className="text-xs font-medium text-slate-400 mb-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 sm:p-4 md:p-5">
+            <p className="text-xs sm:text-sm md:text-base font-medium text-slate-400 mb-1 sm:mb-2">
               Total Insights
             </p>
-            <p className="text-3xl font-bold text-white">{totalInsights}</p>
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-2xl sm:text-3xl md:text-3xl font-bold text-white">
+              {totalInsights}
+            </p>
+            <p className="text-xs sm:text-sm md:text-sm text-slate-500 mt-1 sm:mt-2">
               Analysis from your data
             </p>
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-            <p className="text-xs font-medium text-red-400 mb-2">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 sm:p-4 md:p-5">
+            <p className="text-xs sm:text-sm md:text-base font-medium text-red-400 mb-1 sm:mb-2">
               Critical & High
             </p>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl md:text-3xl font-bold text-white">
               {criticalCount + highCount}
             </p>
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-xs sm:text-sm md:text-sm text-slate-500 mt-1 sm:mt-2">
               Need immediate attention
             </p>
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-            <p className="text-xs font-medium text-emerald-400 mb-2">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 sm:p-4 md:p-5">
+            <p className="text-xs sm:text-sm md:text-base font-medium text-emerald-400 mb-1 sm:mb-2">
               Positive Trends
             </p>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl md:text-3xl font-bold text-white">
               {insights.filter((i) => i.category === "trend").length}
             </p>
-            <p className="text-xs text-slate-500 mt-2">Things going well</p>
+            <p className="text-xs sm:text-sm md:text-sm text-slate-500 mt-1 sm:mt-2">
+              Things going well
+            </p>
           </div>
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex sm:flex-row gap-2  sm:gap-4 items-center sm:items-center justify-between">
+          <div className="flex  flex-wrap gap-2">
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value as any)}
-              className="px-4 py-2 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none transition-colors"
+              className="px-3 sm:px-4 md:px-5 py-1 sm:py-2 md:py-2 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-xs sm:text-sm md:text-base focus:border-blue-600 focus:outline-none transition-colors"
             >
               <option value="all">All Categories</option>
-              <option value="opportunity"> Opportunities</option>
-              <option value="warning"> Warnings</option>
-              <option value="trend"> Trends</option>
-              <option value="recommendation"> Recommendations</option>
+              <option value="opportunity">Opportunities</option>
+              <option value="warning">Warnings</option>
+              <option value="trend">Trends</option>
+              <option value="recommendation">Recommendations</option>
             </select>
 
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-sm focus:border-blue-600 focus:outline-none transition-colors"
+              className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2 bg-slate-800 border cursor-pointer border-slate-700 rounded-lg text-white text-xs sm:text-sm md:text-base focus:border-blue-600 focus:outline-none transition-colors"
             >
               <option value="impact">Sort by Impact</option>
               <option value="recent">Most Recent</option>
             </select>
           </div>
 
-          <button className="px-4 py-2 bg-transparent flex gap-2 border hover:border-blue-500 text-white font-medium rounded-lg transition-colors whitespace-nowrap">
-            <FileText /> Generate Report
+          <button className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2 bg-transparent flex gap-1 sm:gap-2 md:gap-2 border hover:border-blue-500 text-white text-xs sm:text-sm md:text-base font-medium rounded-lg transition-colors whitespace-nowrap">
+            <FileText className="w-4 sm:w-5 md:w-5 h-4 sm:h-5 md:h-5" />{" "}
+            Generate Report
           </button>
         </div>
 
         {/* Insights Grid */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4 md:space-y-4">
           {sortedInsights.length === 0 ? (
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-12 text-center">
-              <p className="text-slate-400">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-8 md:p-12 text-center">
+              <p className="text-xs sm:text-sm md:text-base text-slate-400">
                 No insights found for selected filters
               </p>
             </div>
@@ -295,49 +300,53 @@ export default function InsightsPage() {
               return (
                 <div
                   key={insight.id}
-                  className={`${styles.bg} ${styles.border} border rounded-xl p-6 transition-all hover:border-opacity-100 group cursor-pointer hover:shadow-lg`}
+                  className={`${styles.bg} ${styles.border} border rounded-xl p-4 sm:p-5 md:p-6 transition-all hover:border-opacity-100 group cursor-pointer hover:shadow-lg`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex flex-row items-start gap-2 sm:gap-4">
                     {/* Icon */}
-                    <div className="shrink-0 text-2xl mt-1">
+                    <div className="shrink-0 text-xl sm:text-2xl md:text-2xl mt-0.5 sm:mt-1">
                       {getCategoryIcon(insight.category)}
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-4 mb-2">
+                      <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4 mb-1 sm:mb-2">
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-white mb-1">
+                          <h3 className="text-sm sm:text-lg md:text-lg font-bold text-white mb-1">
                             {insight.title}
                           </h3>
-                          <p className="text-sm text-slate-300 leading-relaxed">
+                          <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed">
                             {insight.description}
                           </p>
                         </div>
-                        <span className="text-slate-400 shrink-0 group-hover:translate-x-1 transition-transform mt-1">
+                        <span className="text-slate-400 shrink-0 group-hover:translate-x-1 transition-transform mt-0.5 sm:mt-1">
                           →
                         </span>
                       </div>
 
                       {/* Footer Info */}
-                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-700/50">
-                        <div className="flex items-center gap-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-slate-700/50 gap-1 sm:gap-4">
+                        <div className="flex items-center gap-2 sm:gap-4">
                           <span
-                            className={`px-3 py-1 rounded-full text-xs font-medium ${styles.badgeBg} ${styles.badgeText}`}
+                            className={`px-2 sm:px-3 md:px-3 py-0.5 sm:py-1 md:py-1 rounded-full text-xs sm:text-xs md:text-sm font-medium ${styles.badgeBg} ${styles.badgeText}`}
                           >
                             {styles.badgeLabel}
                           </span>
-                          <span className="text-xs text-slate-400">
+                          <span className="text-xs sm:text-sm md:text-base text-slate-400">
                             {getCategoryLabel(insight.category)}
                           </span>
                         </div>
                         <div
-                          className={`text-sm font-semibold ${insight.change >= 0 ? "text-red-400" : "text-emerald-400"}`}
+                          className={`text-xs sm:text-sm md:text-base font-semibold ${
+                            insight.change >= 0
+                              ? "text-red-400"
+                              : "text-emerald-400"
+                          }`}
                         >
                           {insight.change >= 0 ? (
-                            <ArrowUp className="inline w-4 h-4" />
+                            <ArrowUp className="inline w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4" />
                           ) : (
-                            <ArrowDown className="inline w-4 h-4" />
+                            <ArrowDown className="inline w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4" />
                           )}{" "}
                           {insight.metric}
                         </div>
@@ -351,17 +360,18 @@ export default function InsightsPage() {
         </div>
 
         {/* Footer CTA */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 text-center">
-          <h3 className="text-lg font-bold text-white mb-2">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 md:p-6 text-center">
+          <h3 className="text-sm sm:text-lg md:text-lg font-bold text-white mb-1 sm:mb-2">
             Want deeper analysis?
           </h3>
-          <p className="text-slate-400 text-sm mb-4">
+          <p className="text-xs sm:text-sm md:text-base text-slate-400 mb-2 sm:mb-4">
             Connect with our financial advisors to get personalized
             recommendations for your business.
           </p>
-          <div className="flex w-ful justify-center">
-            <button className="px-6 py-2.5 bg-transparent border hover:border-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
-              <PhoneCall className="w-5 h-5" /> Schedule Consultation
+          <div className="flex justify-center">
+            <button className="px-3 sm:px-6 md:px-6 py-1.5 sm:py-2.5 md:py-2.5 bg-transparent border hover:border-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-1 sm:gap-2 md:gap-2">
+              <PhoneCall className="w-4 sm:w-5 md:w-5 h-4 sm:h-5 md:h-5" />{" "}
+              Schedule Consultation
             </button>
           </div>
         </div>

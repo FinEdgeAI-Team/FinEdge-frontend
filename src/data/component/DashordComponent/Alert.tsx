@@ -345,7 +345,7 @@ export const AlertPanel = ({ alerts, isOpen, onClose }: AlertPanelProps) => {
       <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
 
       {/* Panel */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-slate-900 border-l border-slate-700/50 z-50 flex flex-col shadow-2xl">
+      <div className="fixed top-0 right-0 h-full w-full max-w-sm md:max-w-md bg-slate-900 border-l border-slate-700/50 z-50 flex flex-col shadow-2xl">
         {/* Header */}
         <div className="p-4 border-b border-slate-700/50">
           <div className="flex items-center justify-between mb-4">

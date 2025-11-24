@@ -107,15 +107,6 @@ const Sidebar: React.FC = () => {
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-700">
-        {!isCollapsed ? (
-          <h1 className="text-xl font-bold text-white">FinEdge AI</h1>
-        ) : (
-          <span className="text-2xl text-white mx-auto">FE</span>
-        )}
-      </div>
-
       {/* Navigation */}
       <div className="flex-1 overflow-y-auto py-4 px-2">
         {/* MAIN */}
@@ -203,17 +194,15 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 flex">
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-slate-800 text-white rounded-lg shadow-lg"
-      >
-        {isMobileOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
+      {/* Mobile Open Button */}
+      {!isMobileOpen && (
+        <button
+          onClick={() => setIsMobileOpen(true)}
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-slate-800 text-white rounded-lg shadow-lg"
+        >
           <Menu className="w-6 h-6" />
-        )}
-      </button>
+        </button>
+      )}
 
       {/* Mobile Overlay */}
       {isMobileOpen && (
@@ -226,23 +215,51 @@ const Sidebar: React.FC = () => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed lg:relative h-screen bg-slate-800 border-r border-slate-700 
-          transition-all duration-300 z-40
-          ${isCollapsed ? "w-20" : "w-64"}
-          ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-        `}
+        fixed lg:relative h-screen bg-slate-800 border-r border-slate-700
+        transition-all duration-300 z-40
+        ${isCollapsed ? "w-20" : "w-64"}
+        ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+      `}
       >
-        {sidebarContent}
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-slate-700 relative">
+            {!isCollapsed ? (
+              <h1 className="text-sm sm:text-base md:text-xl font-bold text-white">
+                FinEdge AI
+              </h1>
+            ) : (
+              <span className="text-2xl text-white">FE</span>
+            )}
 
-        {/* Desktop Toggle */}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="hidden lg:flex absolute -right-3 top-8 w-6 h-6 bg-slate-700 border border-slate-600 rounded-full items-center justify-center text-slate-400 hover:text-white hover:bg-slate-600 transition-all"
-        >
-          <ChevronRight
-            className={`w-4 h-4 transition-transform ${isCollapsed ? "" : "rotate-180"}`}
-          />
-        </button>
+            {/* Mobile Close Button */}
+            {isMobileOpen && (
+              <button
+                onClick={() => setIsMobileOpen(false)}
+                className="lg:hidden p-2 bg-slate-800 text-white rounded-lg shadow-lg"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            )}
+          </div>
+
+          {/* Navigation Scroll Area */}
+          <div className="flex-1 overflow-y-auto py-4 px-2">
+            {sidebarContent}
+          </div>
+
+          {/* Desktop Collapse Toggle */}
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="hidden lg:flex absolute -right-3 top-8 w-6 h-6 bg-slate-700 border border-slate-600 rounded-full items-center justify-center text-slate-400 hover:text-white hover:bg-slate-600 transition-all"
+          >
+            <ChevronRight
+              className={`w-4 h-4 transition-transform ${
+                isCollapsed ? "" : "rotate-180"
+              }`}
+            />
+          </button>
+        </div>
       </aside>
     </div>
   );
